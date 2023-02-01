@@ -16,7 +16,7 @@ model Product {
   stock_status          String
   stock_quantity        Int
   orders                Order[]
-  OrderItem             OrderItems  @relation(fields: [productId], references: [product_id])  
+  OrderItem             OrderItems  @relation(fields: [orderItemId], references: [product_id])  
 }
 
 model Order {

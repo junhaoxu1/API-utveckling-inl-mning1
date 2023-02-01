@@ -11,12 +11,12 @@ export const index = async (req: Request, res: Response) => {
 }
 
 export const show = async (req: Request, res: Response) => {
-    const productId = Number(req.params.productId)
+    const orderItemId = Number(req.params.orderItemId)
 
     try {
         const orderItems = await prisma.orderItems.findUniqueOrThrow({
             where: {
-                id : productId,
+                id : orderItemId,
             },
             include: {
                 product: true,
@@ -46,12 +46,12 @@ export const store = async (req: Request, res: Response) => {
 }
 
 export const update = async (req: Request, res: Response) => {
-    const productId = Number(req.params.productId)
+    const orderItemId = Number(req.params.orderItemId)
 
     try {
         const orderItems = await prisma.orderItems.update({
             where: {
-                id: productId,
+                id: orderItemId,
             },
             data: req.body,
         })
@@ -60,5 +60,20 @@ export const update = async (req: Request, res: Response) => {
 
     } catch (err) {
         return res.status(500).send({ message: 'Something Went Wrong'})
+    }
+}
+
+export const destroy = async (req: Request, res: Response) => {
+    const orderItemId = Number(req.params.orderItemId)
+
+    try {
+        const orderItems = await prisma.orderItems.findUniqueOrThrow({
+            where: {
+                id: orderItemId,
+            },
+        })
+        return res.send(orderItems)
+    } catch (err) {
+        return res.status(500).send({ message: 'Something went wrong when deleting the resource'})
     }
 }
