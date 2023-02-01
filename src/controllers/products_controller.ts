@@ -1,5 +1,6 @@
 import { Request, Response } from 'express'
 import prisma from '../prisma'
+import { body, validationResult } from 'express-validator'
 
 export const index = async (req: Request, res: Response) => {
     try {
@@ -23,10 +24,6 @@ export const show = async (req: Request, res: Response) => {
             where: {
                 id: productId,
             },
-            include: {
-                order: true,
-                orderItems: true,
-            }
         })
         res.send({
             status: 'Success',
@@ -39,6 +36,14 @@ export const show = async (req: Request, res: Response) => {
 }
 
 export const store = async (req: Request, res: Response) => {
+    const validationErrors = validationResult(req)
+    if(!validationErrors.isEmpty()) {
+        return res.status(400).send({
+            status: 'Fail',
+            data: validationErrors.array(),
+        })
+    }
+
     try {
         const product = await prisma.product.create({
             data: {
@@ -50,6 +55,7 @@ export const store = async (req: Request, res: Response) => {
                 stock_quantity: req.body.stock_quantity,
             }
         })
+
         res.send({
             status: 'Success',
             data: product,
