@@ -8,13 +8,15 @@ datasource db {
 }
 
 model Product {
-  id                    Int   @id @default(autoincrement()) @db.UnsignedInt
+  id                    Int         @id @default(autoincrement()) @db.UnsignedInt
   name                  String
   description           String
   price                 Int
-  images                Json
+  images                Json        @default("{}")
   stock_status          String
   stock_quantity        Int
+  orders                Order[]
+  OrderItem             OrderItems  @relation(fields: [productId], references: [product_id])  
 }
 
 model Order {
@@ -27,7 +29,7 @@ model Order {
   customer_email        String
   customer_phone        String?
   order_total           Int
-  
+  products              Product[]
 }
 
 model OrderItems {
@@ -35,4 +37,5 @@ model OrderItems {
   qty                   Int
   item_price            Int
   item_total            Int
+  products              Product[]
 }
