@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import prisma from '../prisma'
-import { body, validationResult } from 'express-validator'
+import { validationResult } from 'express-validator'
 
 export const index = async (req: Request, res: Response) => {
     try {
@@ -25,6 +25,7 @@ export const show = async (req: Request, res: Response) => {
                 id: productId,
             },
         })
+        
         res.send({
             status: 'Success',
             data: product,

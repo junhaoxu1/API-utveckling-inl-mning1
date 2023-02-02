@@ -5,13 +5,18 @@ const router = express.Router()
 
 router.get('/', index)
 
-router.get('/productId', show)
+router.get('/:productId', show)
 
 router.post('/', [
     body('name')
-    .isEmpty().bail()
-    .isString().bail()
-    .isLength({min: 2})
+    .isLength({min: 1}).bail().withMessage("Not 1 Word")
+    .isString().withMessage("Not a String"),
+
+    body('price')
+    .isLength({min: 1}),
+
+    body('stock_quantity')
+    .isLength({min: 1})
 ], store)
 
 export default router
