@@ -15,8 +15,6 @@ model Product {
   images                Json        @default("{}")
   stock_status          String
   stock_quantity        Int
-  orders                Order[]
-  OrderItem             OrderItems[] 
 }
 
 model Order {
@@ -29,13 +27,15 @@ model Order {
   customer_email        String
   customer_phone        String?
   order_total           Int
-  products              Product[]
+  orderItem             OrderItems[]
 }
 
 model OrderItems {
-  product_id            Int   @id @default(autoincrement()) @db.UnsignedInt
+  id                    Int   @id @default(autoincrement()) @db.UnsignedInt
+  product_id            Int
   qty                   Int
   item_price            Int
   item_total            Int
-  products              Product[]
+
+  orders                Order[]
 }

@@ -24,7 +24,12 @@ export const show = async (req: Request, res: Response) => {
             where: {
                 id: orderId,
             },
+
+            include: {
+                orderItem: true,
+            }
         })
+
         res.send({
             status: 'Success',
             data: order,
@@ -47,7 +52,6 @@ export const store = async (req: Request, res: Response) => {
     try {
         const order = await prisma.order.create({
             data: {
-
                 customer_first_name: req.body.customer_first_name,
                 customer_last_name:  req.body.customer_last_name,
                 customer_address:    req.body.customer_address,  
@@ -56,7 +60,19 @@ export const store = async (req: Request, res: Response) => {
                 customer_email:      req.body.customer_email,
                 customer_phone:      req.body.customer_phone,
                 order_total:         req.body.order_total,
+
+                orderItem: {
+                    create: {
+                        product_id: 1,
+                        qty: 1,
+                        item_price: 1,
+                        item_total: 2,
+                    },
+                },
             },
+            include: {
+                orderItem: true,
+            }
         })
 
         res.send({

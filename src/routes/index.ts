@@ -1,7 +1,7 @@
 import express from "express"
 // import orderItems from './orderItems'
 import products from './products'
-// import orders from './orders'
+import orders from './orders'
 import resource from './_router'
 
 // instantiate a new router
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 
 router.use('/products', products)
 
-// router.use('/orderItems', orderItems)
+router.use('/orders', orders)
 
 /**
  * [EXAMPLE] /resource
