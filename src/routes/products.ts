@@ -9,15 +9,15 @@ router.get('/:productId', show)
 
 router.post('/', [
     body('name')
-    .isLength({min: 1}).bail().withMessage("Not 1 Word")
+    .isLength({min: 1}).bail().withMessage("It's empty")
     .isString().withMessage("Not a String"),
 
     body('price')
-    .isLength({min: 1}),
+    .isLength({min: 1}).withMessage("Add a Price"),
 
     body('stock_quantity')
-    .isLength({min: 1})
-    
+    .isLength({min: 1}).withMessage("Add Quantity")
+
 ], store)
 
 export default router

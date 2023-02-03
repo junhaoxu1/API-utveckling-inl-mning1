@@ -9,31 +9,48 @@ router.get('/:orderId', show)
 
 router.post('/', [
     body('customer_first_name')
-    .isString().bail()
+    .isString().withMessage("Not a String").bail()
     .isLength({min: 1}),
+
     body('customer_last_name')
-    .isString().bail()
+    .isString().withMessage("Not a String").bail()
     .isLength({min: 1}),
+
     body('customer_address')
-    .isString().bail()
+    .isString().withMessage("Not a String").bail()
     .isLength({min: 1}),
+
     body('customer_postcode')
-    .isString().bail()
+    .isString().withMessage("Not a String").bail()
     .isLength({min: 1, max: 6}),
+
     body('customer_email')
-    .isString().bail()
+    .isString().withMessage("Not a String").bail()
     .isLength({min: 1}).bail()
     .isEmail(),
+
+    body('customer_phone')
+    .optional().bail()
+    .isString().withMessage("Not a String"),
+
     body('order_total')
     .isLength({min: 1}),
 
-    body('product_id')
+
+    body('orderItem.*.product_id')
+    .isInt()
     .isLength({min: 1}),
-    body('qty')
+
+    body('orderItem.*.qty')
+    .isInt()
     .isLength({min: 1}),
-    body('item_price')
+
+    body('orderItem.*.item_price')
+    .isInt()
     .isLength({min: 1}),
-    body('item_total')
+
+    body('orderItem.*.item_total')
+    .isInt()
     .isLength({min: 1})
 ],store)
 
