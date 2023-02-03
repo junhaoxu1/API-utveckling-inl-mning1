@@ -17,6 +17,7 @@ router.post('/', [
 
     body('stock_quantity')
     .isLength({min: 1})
+    
 ], store)
 
 export default router
