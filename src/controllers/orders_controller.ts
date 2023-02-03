@@ -48,6 +48,7 @@ export const store = async (req: Request, res: Response) => {
             data: validationErrors.array(),
         })
     }
+    const products = req.body.orderItem
 
     try {
         const order = await prisma.order.create({
@@ -62,11 +63,8 @@ export const store = async (req: Request, res: Response) => {
                 order_total:         req.body.order_total,
 
                 orderItem: {
-                    create: {
-                        product_id: 1,
-                        qty: 1,
-                        item_price: 1,
-                        item_total: 2,
+                    createMany: {
+                        data: products,
                     },
                 },
             },

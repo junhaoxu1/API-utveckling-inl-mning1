@@ -11,10 +11,12 @@ model Product {
   id                    Int         @id @default(autoincrement()) @db.UnsignedInt
   name                  String
   description           String
-  price                 Int
+  price                 Int         @db.UnsignedInt
   images                Json        @default("{}")
   stock_status          String
-  stock_quantity        Int
+  stock_quantity        Int         @db.UnsignedInt
+
+  orderItem             OrderItems[]
 }
 
 model Order {
@@ -26,16 +28,20 @@ model Order {
   customer_postcode     String
   customer_email        String
   customer_phone        String?
-  order_total           Int
+  order_total           Int   @db.UnsignedInt
   orderItem             OrderItems[]
 }
 
 model OrderItems {
   id                    Int   @id @default(autoincrement()) @db.UnsignedInt
-  product_id            Int
-  qty                   Int
-  item_price            Int
-  item_total            Int
+  product_id            Int   @db.UnsignedInt
+  qty                   Int   @db.UnsignedInt
+  item_price            Int   @db.UnsignedInt
+  item_total            Int   @db.UnsignedInt
 
-  orders                Order[]
+  orders                Order @relation(fields: [orderId], references: [id] )
+  orderId               Int   @db.UnsignedInt
+
+  products              Product @relation(fields: [product_id], references: [id])
+
 }
