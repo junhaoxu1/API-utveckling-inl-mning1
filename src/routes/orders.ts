@@ -31,6 +31,7 @@ router.post('/', [
 
     body('customer_phone')
     .optional().bail()
+    .matches(/^\d+$/)
     .isString().withMessage("Not a String"),
 
     body('order_total')
