@@ -16,7 +16,7 @@ model Product {
   stock_status          String
   stock_quantity        Int         @db.UnsignedInt
 
-  orderItem             OrderItems[]
+  order_items           OrderItems[]
 }
 
 model Order {
@@ -29,7 +29,7 @@ model Order {
   customer_email        String
   customer_phone        String?
   order_total           Int   @db.UnsignedInt
-  orderItem             OrderItems[]
+  order_items           OrderItems[]
 }
 
 model OrderItems {

@@ -38,19 +38,19 @@ router.post('/', [
     .isLength({min: 1}),
 
 
-    body('orderItem.*.product_id')
+    body('order_items.*.product_id')
     .isInt()
     .isLength({min: 1}),
 
-    body('orderItem.*.qty')
+    body('order_items.*.qty')
     .isInt()
     .isLength({min: 1}),
 
-    body('orderItem.*.item_price')
+    body('order_items.*.item_price')
     .isInt()
     .isLength({min: 1}),
 
-    body('orderItem.*.item_total')
+    body('order_items.*.item_total')
     .isInt()
     .isLength({min: 1})
 ],store)

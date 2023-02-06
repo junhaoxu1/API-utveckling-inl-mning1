@@ -26,7 +26,7 @@ export const show = async (req: Request, res: Response) => {
             },
 
             include: {
-                orderItem: true,
+                order_items : true,
             }
         })
 
@@ -48,7 +48,7 @@ export const store = async (req: Request, res: Response) => {
             data: validationErrors.array(),
         })
     }
-    const products = req.body.orderItem
+    const products = req.body.order_items 
 
     try {
         const order = await prisma.order.create({
@@ -62,14 +62,14 @@ export const store = async (req: Request, res: Response) => {
                 customer_phone:      req.body.customer_phone,
                 order_total:         req.body.order_total,
 
-                orderItem: {
+                order_items: {
                     createMany: {
                         data: products,
                     },
                 },
             },
             include: {
-                orderItem: true,
+                order_items: true,
             }
         })
 
