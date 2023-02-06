@@ -17,12 +17,12 @@ export const index = async (req: Request, res: Response) => {
 }
 
 export const show = async (req: Request, res: Response) => {
-    const orderId = Number(req.params.orderId)
+    const order_id = Number(req.params.order_id)
 
     try {
         const order = await prisma.order.findUniqueOrThrow({
             where: {
-                id: orderId,
+                id: order_id,
             },
 
             include: {
@@ -48,7 +48,8 @@ export const store = async (req: Request, res: Response) => {
             data: validationErrors.array(),
         })
     }
-    const products = req.body.order_items 
+    const products = req.body.order_items
+
 
     try {
         const order = await prisma.order.create({
@@ -64,9 +65,11 @@ export const store = async (req: Request, res: Response) => {
 
                 order_items: {
                     createMany: {
-                        data: products,
+                        data: 
+                            req.body.order_items,
                     },
                 },
+
             },
             include: {
                 order_items: true,

@@ -38,9 +38,11 @@ model OrderItems {
   qty                   Int   @db.UnsignedInt
   item_price            Int   @db.UnsignedInt
   item_total            Int   @db.UnsignedInt
+  name                  String 
+  thumbnail             String
 
-  orders                Order @relation(fields: [orderId], references: [id] )
-  orderId               Int   @db.UnsignedInt
+  orders                Order @relation(fields: [order_id], references: [id] )
+  order_id               Int   @db.UnsignedInt
 
   products              Product @relation(fields: [product_id], references: [id])
 
