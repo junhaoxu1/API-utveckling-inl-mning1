@@ -17,7 +17,7 @@ model order {
   customer_email      String
   customer_phone      String?
   order_total         Int          @db.UnsignedInt
-  order_items          orderitems[]
+  order_items         orderitems[]
 }
 
 model orderitems {
@@ -39,5 +39,5 @@ model product {
   images         Json
   stock_status   String
   stock_quantity Int          @db.UnsignedInt
-  order_items     orderitems[]
+  order_items    orderitems[]
 }
