@@ -29,7 +29,7 @@ CREATE TABLE `Order` (
 -- CreateTable
 CREATE TABLE `OrderItems` (
     `id` INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-    `product_id` INTEGER NOT NULL,
+    `product_id` INTEGER UNSIGNED NOT NULL,
     `qty` INTEGER NOT NULL,
     `item_price` INTEGER NOT NULL,
     `item_total` INTEGER NOT NULL,
