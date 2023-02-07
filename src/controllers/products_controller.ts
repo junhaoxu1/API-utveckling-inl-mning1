@@ -12,7 +12,7 @@ export const index = async (req: Request, res: Response) => {
         })
 
     } catch (err) {
-        res.status(500).send({ status: 'error', message: 'Something went wrong' })
+        res.status(500).send({ status: 'error', message: 'Cannot get products' })
     }
 }
 
