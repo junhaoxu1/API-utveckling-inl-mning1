@@ -17,7 +17,7 @@ model order {
   customer_email      String
   customer_phone      String?
   order_total         Int          @db.UnsignedInt
-  orderitems          orderitems[]
+  order_items          orderitems[]
 }
 
 model orderitems {
@@ -27,11 +27,8 @@ model orderitems {
   item_price Int     @db.UnsignedInt
   item_total Int     @db.UnsignedInt
   order_id   Int     @db.UnsignedInt
-  order      order   @relation(fields: [order_id], references: [id], map: "OrderItems_order_id_fkey")
-  product    product @relation(fields: [product_id], references: [id], map: "OrderItems_product_id_fkey")
-
-  @@index([order_id], map: "OrderItems_order_id_fkey")
-  @@index([product_id], map: "OrderItems_product_id_fkey")
+  order      order   @relation(fields: [order_id], references: [id])
+  product    product @relation(fields: [product_id], references: [id])
 }
 
 model product {
@@ -42,5 +39,5 @@ model product {
   images         Json
   stock_status   String
   stock_quantity Int          @db.UnsignedInt
-  orderitems     orderitems[]
+  order_items     orderitems[]
 }
