@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.get('/', index)
 
-router.get('/:orderId', show)
+router.get('/:order_id', show)
 
 router.post('/', [
     body('customer_first_name')
@@ -38,21 +38,25 @@ router.post('/', [
     .isLength({min: 1}),
 
 
-    body('orderItem.*.product_id')
-    .isInt()
-    .isLength({min: 1}),
-
-    body('orderItem.*.qty')
-    .isInt()
-    .isLength({min: 1}),
-
-    body('orderItem.*.item_price')
-    .isInt()
-    .isLength({min: 1}),
-
-    body('orderItem.*.item_total')
+    body('order_items.*.product_id')
     .isInt()
     .isLength({min: 1})
+    .not().isString(),
+
+    body('order_items.*.qty')
+    .isInt()
+    .isLength({min: 1})
+    .not().isString(),
+
+    body('order_items.*.item_price')
+    .isInt()
+    .isLength({min: 1})
+    .not().isString(),
+
+    body('order_items.*.item_total')
+    .isInt()
+    .isLength({min: 1})
+    .not().isString(),
 ],store)
 
 export default router
