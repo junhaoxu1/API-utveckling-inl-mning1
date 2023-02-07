@@ -48,7 +48,6 @@ export const store = async (req: Request, res: Response) => {
             data: validationErrors.array(),
         })
     }
-
     try {
         const order = await prisma.order.create({
             data: {
