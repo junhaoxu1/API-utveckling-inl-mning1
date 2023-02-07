@@ -35,27 +35,22 @@ router.post('/', [
     .isString().withMessage("Not a String"),
 
     body('order_total')
-    .isLength({min: 1}),
-
+    .isInt({min: 1}),
 
     body('order_items.*.product_id')
-    .isInt()
     .isLength({min: 1})
     .not().isString(),
 
     body('order_items.*.qty')
-    .isInt()
-    .isLength({min: 1})
+    .isInt({min: 1})
     .not().isString(),
 
     body('order_items.*.item_price')
-    .isInt()
-    .isLength({min: 1})
+    .isInt({min: 1})
     .not().isString(),
 
     body('order_items.*.item_total')
-    .isInt()
-    .isLength({min: 1})
+    .isInt({min: 1})
     .not().isString(),
 ],store)
 

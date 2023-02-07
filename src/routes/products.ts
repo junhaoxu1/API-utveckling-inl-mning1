@@ -13,10 +13,7 @@ router.post('/', [
     .isString().withMessage("Not a String"),
 
     body('price')
-    .isLength({min: 1}).withMessage("Add a Price"),
-
-    body('stock_quantity')
-    .isLength({min: 1}).withMessage("Add Quantity")
+    .isInt({min: 1}).withMessage("Add a Price"),
 
 ], store)
 
