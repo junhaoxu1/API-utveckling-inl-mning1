@@ -31,7 +31,7 @@ export const show = async (req: Request, res: Response) => {
         })
 
         res.send({
-            status: 'Success',
+            status: 'success',
             data: order,
         })
 
@@ -74,7 +74,7 @@ export const store = async (req: Request, res: Response) => {
         })
 
         res.send({
-            status: 'Success',
+            status: 'success',
             data: order,
         })
 
