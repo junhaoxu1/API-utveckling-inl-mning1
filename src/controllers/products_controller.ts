@@ -27,12 +27,13 @@ export const show = async (req: Request, res: Response) => {
         })
         
         res.send({
-            status: 'Success',
+            status: 'success',
             data: product,
         })
 
     } catch (err) {
         return res.status(404).send({ status: 'error', message: 'Not Found' })
+        
     }
 }
 
@@ -58,7 +59,7 @@ export const store = async (req: Request, res: Response) => {
         })
 
         res.send({
-            status: 'Success',
+            status: 'success',
             data: product,
         })
 
