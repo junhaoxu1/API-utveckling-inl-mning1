@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.get('/', index)
 
-router.get('/:productId', show)
+router.get('/:product_id', show)
 
 router.post('/', [
     body('name')
